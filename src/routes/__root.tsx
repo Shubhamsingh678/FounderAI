@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "FounderAI – AI Startup Co-Founder" },
+      { name: "description", content: "FounderAI is an AI-powered startup planning platform that helps entrepreneurs generate startup ideas, create business models, analyze competitors, develop marke" },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "FounderAI – AI Startup Co-Founder" },
+      { property: "og:description", content: "FounderAI is an AI-powered startup planning platform that helps entrepreneurs generate startup ideas, create business models, analyze competitors, develop marke" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "FounderAI – AI Startup Co-Founder" },
+      { name: "twitter:description", content: "FounderAI is an AI-powered startup planning platform that helps entrepreneurs generate startup ideas, create business models, analyze competitors, develop marke" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/MBD0Pp0iPnQbcuSPq6009r4uXVv2/social-images/social-1781105844609-Screenshot_2026-06-10_210443.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/MBD0Pp0iPnQbcuSPq6009r4uXVv2/social-images/social-1781105844609-Screenshot_2026-06-10_210443.webp" },
     ],
     links: [
       {
