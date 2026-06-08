@@ -74,9 +74,6 @@ function Landing() {
 
       {/* Hero */}
       <section className="pt-36 pb-20 px-6 text-center max-w-5xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs mb-6">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" /> Powered by Lovable AI
-        </div>
         <h1 className="text-5xl sm:text-7xl font-bold leading-[1.05] tracking-tight">
           The AI <span className="text-gradient">co-founder</span>
           <br /> every startup needs.
