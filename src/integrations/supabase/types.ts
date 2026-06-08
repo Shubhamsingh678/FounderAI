@@ -14,7 +14,158 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      chat_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      reports: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          payload: Json
+          startup_idea_id: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind: string
+          payload?: Json
+          startup_idea_id?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          payload?: Json
+          startup_idea_id?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reports_startup_idea_id_fkey"
+            columns: ["startup_idea_id"]
+            isOneToOne: false
+            referencedRelation: "startup_ideas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      startup_ideas: {
+        Row: {
+          budget: string | null
+          created_at: string
+          growth_strategy: string | null
+          id: string
+          industry: string | null
+          interests: string | null
+          name: string
+          payload: Json
+          problem: string | null
+          revenue_model: string | null
+          score: number | null
+          skills: string | null
+          solution: string | null
+          target_audience: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          budget?: string | null
+          created_at?: string
+          growth_strategy?: string | null
+          id?: string
+          industry?: string | null
+          interests?: string | null
+          name: string
+          payload?: Json
+          problem?: string | null
+          revenue_model?: string | null
+          score?: number | null
+          skills?: string | null
+          solution?: string | null
+          target_audience?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          budget?: string | null
+          created_at?: string
+          growth_strategy?: string | null
+          id?: string
+          industry?: string | null
+          interests?: string | null
+          name?: string
+          payload?: Json
+          problem?: string | null
+          revenue_model?: string | null
+          score?: number | null
+          skills?: string | null
+          solution?: string | null
+          target_audience?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
