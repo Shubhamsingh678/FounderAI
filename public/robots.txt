@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /idea
+Disallow: /business-model
+Disallow: /competitors
+Disallow: /chat
+Disallow: /marketing
+Disallow: /pitch
+Disallow: /settings

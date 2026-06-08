@@ -1,0 +1,7 @@
+# FounderAI
+
+> The AI startup co-founder: generate ideas, business models, competitor analyses, marketing plans, and pitch decks.
+
+## Pages
+- [Home](/): Landing page and product overview
+- [Sign in / Sign up](/auth): Authentication
