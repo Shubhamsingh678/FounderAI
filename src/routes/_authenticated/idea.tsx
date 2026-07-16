@@ -27,12 +27,23 @@ function IdeaPage() {
   const [form, setForm] = useState({
     skills: "",
     interests: "",
-    budget: "$5,000",
+    budgetUsd: "$5,000",
+    budgetInr: "₹4,00,000",
     industry: "SaaS",
   });
 
+
   const gen = useMutation({
-    mutationFn: () => genFn({ data: form }),
+    mutationFn: () =>
+      genFn({
+        data: {
+          skills: form.skills,
+          interests: form.interests,
+          industry: form.industry,
+          budget: `${form.budgetUsd} / ${form.budgetInr}`,
+        },
+      }),
+
     onSuccess: () => {
       toast.success("New startup idea generated!");
       qc.invalidateQueries({ queryKey: ["ideas"] });
@@ -90,24 +101,36 @@ function IdeaPage() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <Label htmlFor="budget">Budget</Label>
+                <Label htmlFor="budgetUsd">Budget (USD)</Label>
                 <Input
-                  id="budget"
+                  id="budgetUsd"
                   required
-                  value={form.budget}
-                  onChange={(e) => setForm({ ...form, budget: e.target.value })}
+                  value={form.budgetUsd}
+                  onChange={(e) => setForm({ ...form, budgetUsd: e.target.value })}
+                  placeholder="$5,000"
                 />
               </div>
               <div>
-                <Label htmlFor="industry">Industry</Label>
+                <Label htmlFor="budgetInr">Budget (INR)</Label>
                 <Input
-                  id="industry"
+                  id="budgetInr"
                   required
-                  value={form.industry}
-                  onChange={(e) => setForm({ ...form, industry: e.target.value })}
+                  value={form.budgetInr}
+                  onChange={(e) => setForm({ ...form, budgetInr: e.target.value })}
+                  placeholder="₹4,00,000"
                 />
               </div>
             </div>
+            <div>
+              <Label htmlFor="industry">Industry</Label>
+              <Input
+                id="industry"
+                required
+                value={form.industry}
+                onChange={(e) => setForm({ ...form, industry: e.target.value })}
+              />
+            </div>
+
             <Button
               type="submit"
               disabled={gen.isPending}
