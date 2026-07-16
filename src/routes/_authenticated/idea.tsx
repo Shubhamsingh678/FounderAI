@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { generateStartupIdea, listIdeas, deleteIdea } from "@/lib/founder.functions";
+import { getUsdInrRate } from "@/lib/fx.functions";
 import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +11,18 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Loader2, Sparkles, Trash2 } from "lucide-react";
+
+function parseNumber(s: string): number | null {
+  const n = Number(s.replace(/[^0-9.]/g, ""));
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+function formatUsd(n: number) {
+  return "$" + Math.round(n).toLocaleString("en-US");
+}
+function formatInr(n: number) {
+  return "₹" + Math.round(n).toLocaleString("en-IN");
+}
+
 
 export const Route = createFileRoute("/_authenticated/idea")({
   head: () => ({ meta: [{ title: "Generate Startup Idea — FounderAI" }] }),
@@ -31,6 +44,33 @@ function IdeaPage() {
     budgetInr: "₹4,00,000",
     industry: "SaaS",
   });
+
+  const rateFn = useServerFn(getUsdInrRate);
+  const { data: fx } = useQuery({
+    queryKey: ["fx", "usd-inr"],
+    queryFn: () => rateFn(),
+    staleTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false,
+  });
+
+  // Auto-convert USD -> INR whenever the rate loads or USD changes.
+  useEffect(() => {
+    if (!fx?.rate) return;
+    const usd = parseNumber(form.budgetUsd);
+    if (usd == null) return;
+    const inr = formatInr(usd * fx.rate);
+    if (inr !== form.budgetInr) setForm((f) => ({ ...f, budgetInr: inr }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fx?.rate, form.budgetUsd]);
+
+  const handleInrChange = (v: string) => {
+    setForm((f) => ({ ...f, budgetInr: v }));
+    if (!fx?.rate) return;
+    const inr = parseNumber(v);
+    if (inr == null) return;
+    setForm((f) => ({ ...f, budgetInr: v, budgetUsd: formatUsd(inr / fx.rate) }));
+  };
+
 
 
   const gen = useMutation({
@@ -116,11 +156,17 @@ function IdeaPage() {
                   id="budgetInr"
                   required
                   value={form.budgetInr}
-                  onChange={(e) => setForm({ ...form, budgetInr: e.target.value })}
+                  onChange={(e) => handleInrChange(e.target.value)}
                   placeholder="₹4,00,000"
                 />
               </div>
             </div>
+            <p className="text-[11px] text-muted-foreground -mt-2">
+              {fx?.rate
+                ? `Live rate: 1 USD ≈ ₹${fx.rate.toFixed(2)}${fx.source === "fallback" ? " (offline fallback)" : ""}`
+                : "Fetching live USD → INR rate…"}
+            </p>
+
             <div>
               <Label htmlFor="industry">Industry</Label>
               <Input
