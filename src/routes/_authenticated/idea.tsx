@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { generateStartupIdea, listIdeas, deleteIdea } from "@/lib/founder.functions";
+import { getUsdInrRate } from "@/lib/fx.functions";
 import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +11,18 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Loader2, Sparkles, Trash2 } from "lucide-react";
+
+function parseNumber(s: string): number | null {
+  const n = Number(s.replace(/[^0-9.]/g, ""));
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+function formatUsd(n: number) {
+  return "$" + Math.round(n).toLocaleString("en-US");
+}
+function formatInr(n: number) {
+  return "₹" + Math.round(n).toLocaleString("en-IN");
+}
+
 
 export const Route = createFileRoute("/_authenticated/idea")({
   head: () => ({ meta: [{ title: "Generate Startup Idea — FounderAI" }] }),
