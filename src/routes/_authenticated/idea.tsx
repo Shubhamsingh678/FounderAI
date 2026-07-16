@@ -163,8 +163,8 @@ function IdeaPage() {
             </div>
             <p className="text-[11px] text-muted-foreground -mt-2">
               {fx?.rate
-                ? `Live rate: 1 USD ≈ ₹${fx.rate.toFixed(2)}${fx.source === "fallback" ? " (offline fallback)" : ""}`
-                : "Fetching live USD → INR rate…"}
+                ? `Live rate: 1 INR ≈ $${(1 / fx.rate).toFixed(4)}${fx.source === "fallback" ? " (offline fallback)" : ""}`
+                : "Fetching live INR → USD rate…"}
             </p>
 
             <div>
