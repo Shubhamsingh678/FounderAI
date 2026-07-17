@@ -128,13 +128,17 @@ function ChatPage() {
                 )}
               </div>
               <div
-                className={`max-w-[80%] text-sm leading-relaxed whitespace-pre-wrap ${
+                className={`max-w-[80%] text-sm leading-relaxed ${
                   m.role === "user"
-                    ? "bg-gradient-primary text-primary-foreground rounded-2xl rounded-tr-sm px-4 py-2.5"
-                    : "text-foreground"
+                    ? "bg-gradient-primary text-primary-foreground rounded-2xl rounded-tr-sm px-4 py-2.5 whitespace-pre-wrap"
+                    : "text-foreground prose prose-invert prose-sm max-w-none prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-0.5 prose-headings:mt-3 prose-headings:mb-2 prose-pre:bg-white/5 prose-code:text-primary-foreground prose-a:text-primary"
                 }`}
               >
-                {m.content}
+                {m.role === "user" ? (
+                  m.content
+                ) : (
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.content}</ReactMarkdown>
+                )}
               </div>
             </div>
           ))}
