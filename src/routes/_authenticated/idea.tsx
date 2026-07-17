@@ -17,7 +17,7 @@ function parseNumber(s: string): number | null {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 function formatUsd(n: number) {
-  return "$" + Math.round(n).toLocaleString("en-US");
+  return "$" + n.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 0 });
 }
 function formatInr(n: number) {
   return "₹" + Math.round(n).toLocaleString("en-IN");
