@@ -5,6 +5,7 @@ import { getDashboardStats } from "@/lib/founder.functions";
 import { PageHeader } from "@/components/page-header";
 import { Lightbulb, FileText, MessagesSquare, TrendingUp, ArrowUpRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DownloadPdfButton } from "@/components/download-pdf-button";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({ meta: [{ title: "Dashboard — FounderAI" }] }),
