@@ -39,11 +39,12 @@ function CompetitorsPage() {
   const payload = latest?.payload as any;
 
   return (
-    <div>
+    <div id="pdf-root">
       <PageHeader
         eyebrow="Competitor Analysis"
         title="Know your market"
         description="Identify rivals, surface strengths and weaknesses, and find your opportunity."
+        actions={<DownloadPdfButton targetId="pdf-root" filename="founderai-competitors.pdf" />}
       />
 
       <div className="glass-strong p-5 flex flex-col sm:flex-row gap-3 items-end mb-6">
