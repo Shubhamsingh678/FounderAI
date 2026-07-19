@@ -31,17 +31,20 @@ function Dashboard() {
   ];
 
   return (
-    <div>
+    <div id="pdf-root">
       <PageHeader
         eyebrow="Dashboard"
         title="Welcome back, founder."
         description="Your startup workspace at a glance."
         actions={
-          <Button asChild className="bg-gradient-primary text-primary-foreground shadow-glow">
-            <Link to="/idea">
-              <Sparkles className="h-4 w-4 mr-1.5" /> New idea
-            </Link>
-          </Button>
+          <>
+            <DownloadPdfButton targetId="pdf-root" filename="founderai-dashboard.pdf" />
+            <Button asChild className="bg-gradient-primary text-primary-foreground shadow-glow">
+              <Link to="/idea">
+                <Sparkles className="h-4 w-4 mr-1.5" /> New idea
+              </Link>
+            </Button>
+          </>
         }
       />
 
