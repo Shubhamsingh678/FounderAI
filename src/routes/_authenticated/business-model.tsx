@@ -50,11 +50,12 @@ function BusinessModelPage() {
   const latest = reports?.[0];
 
   return (
-    <div>
+    <div id="pdf-root">
       <PageHeader
         eyebrow="Business Model"
         title="Business Model Canvas"
         description="Auto-generate the 9 building blocks of your startup."
+        actions={<DownloadPdfButton targetId="pdf-root" filename="founderai-business-model.pdf" />}
       />
 
       <div className="glass-strong p-5 flex flex-col sm:flex-row gap-3 items-end mb-6">
