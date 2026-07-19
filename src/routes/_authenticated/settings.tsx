@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { getProfile, updateProfile } from "@/lib/founder.functions";
 import { PageHeader } from "@/components/page-header";
+import { DownloadPdfButton } from "@/components/download-pdf-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
