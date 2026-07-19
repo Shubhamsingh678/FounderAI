@@ -95,11 +95,12 @@ function PitchPage() {
   }
 
   return (
-    <div>
+    <div id="pdf-root">
       <PageHeader
         eyebrow="Pitch Deck"
         title="Investor-ready in minutes"
         description="A 10-slide pitch deck — review in-app or export to PowerPoint."
+        actions={<DownloadPdfButton targetId="pdf-root" filename="founderai-pitch.pdf" />}
       />
 
       <div className="glass-strong p-5 flex flex-col sm:flex-row gap-3 items-end mb-6">
