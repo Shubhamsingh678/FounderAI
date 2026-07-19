@@ -5,6 +5,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { generateStartupIdea, listIdeas, deleteIdea } from "@/lib/founder.functions";
 import { getUsdInrRate } from "@/lib/fx.functions";
 import { PageHeader } from "@/components/page-header";
+import { DownloadPdfButton } from "@/components/download-pdf-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
