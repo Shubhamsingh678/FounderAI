@@ -102,11 +102,12 @@ function IdeaPage() {
   });
 
   return (
-    <div>
+    <div id="pdf-root">
       <PageHeader
         eyebrow="Idea Generator"
         title="Generate your next startup"
         description="Describe yourself and your constraints. We'll generate a complete startup concept."
+        actions={<DownloadPdfButton targetId="pdf-root" filename="founderai-ideas.pdf" />}
       />
 
       <div className="grid lg:grid-cols-5 gap-6">
