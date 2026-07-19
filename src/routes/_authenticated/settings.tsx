@@ -43,8 +43,13 @@ function SettingsPage() {
   });
 
   return (
-    <div>
-      <PageHeader eyebrow="Settings" title="Your profile" description="Manage how you appear in FounderAI." />
+    <div id="pdf-root">
+      <PageHeader
+        eyebrow="Settings"
+        title="Your profile"
+        description="Manage how you appear in FounderAI."
+        actions={<DownloadPdfButton targetId="pdf-root" filename="founderai-profile.pdf" />}
+      />
       <form
         className="glass-strong p-6 max-w-2xl space-y-5"
         onSubmit={(e) => {
