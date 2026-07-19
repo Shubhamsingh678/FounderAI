@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2, Send, Sparkles, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { DownloadPdfButton } from "@/components/download-pdf-button";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -68,24 +69,27 @@ function ChatPage() {
   ];
 
   return (
-    <div className="flex flex-col h-[calc(100vh-7rem)] lg:h-[calc(100vh-5rem)]">
+    <div id="pdf-root" className="flex flex-col h-[calc(100vh-7rem)] lg:h-[calc(100vh-5rem)]">
       <PageHeader
         eyebrow="AI Co-Founder"
         title="Chat with your co-founder"
         description="Ask anything: strategy, marketing, fundraising, hiring."
         actions={
           list.length > 0 && (
-            <Button
-              variant="outline"
-              size="sm"
-              className="bg-white/5 border-white/10"
-              onClick={async () => {
-                await clearFn();
-                qc.invalidateQueries({ queryKey: ["chat"] });
-              }}
-            >
-              <Trash2 className="h-4 w-4 mr-1.5" /> Clear
-            </Button>
+            <>
+              <DownloadPdfButton targetId="pdf-root" filename="founderai-chat.pdf" />
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-white/5 border-white/10"
+                onClick={async () => {
+                  await clearFn();
+                  qc.invalidateQueries({ queryKey: ["chat"] });
+                }}
+              >
+                <Trash2 className="h-4 w-4 mr-1.5" /> Clear
+              </Button>
+            </>
           )
         }
       />

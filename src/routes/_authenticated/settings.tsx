@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { getProfile, updateProfile } from "@/lib/founder.functions";
 import { PageHeader } from "@/components/page-header";
+import { DownloadPdfButton } from "@/components/download-pdf-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -42,8 +43,13 @@ function SettingsPage() {
   });
 
   return (
-    <div>
-      <PageHeader eyebrow="Settings" title="Your profile" description="Manage how you appear in FounderAI." />
+    <div id="pdf-root">
+      <PageHeader
+        eyebrow="Settings"
+        title="Your profile"
+        description="Manage how you appear in FounderAI."
+        actions={<DownloadPdfButton targetId="pdf-root" filename="founderai-profile.pdf" />}
+      />
       <form
         className="glass-strong p-6 max-w-2xl space-y-5"
         onSubmit={(e) => {

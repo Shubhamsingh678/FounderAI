@@ -5,6 +5,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { generateStartupIdea, listIdeas, deleteIdea } from "@/lib/founder.functions";
 import { getUsdInrRate } from "@/lib/fx.functions";
 import { PageHeader } from "@/components/page-header";
+import { DownloadPdfButton } from "@/components/download-pdf-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -101,11 +102,12 @@ function IdeaPage() {
   });
 
   return (
-    <div>
+    <div id="pdf-root">
       <PageHeader
         eyebrow="Idea Generator"
         title="Generate your next startup"
         description="Describe yourself and your constraints. We'll generate a complete startup concept."
+        actions={<DownloadPdfButton targetId="pdf-root" filename="founderai-ideas.pdf" />}
       />
 
       <div className="grid lg:grid-cols-5 gap-6">

@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { generateMarketingPlan, listReports } from "@/lib/founder.functions";
 import { PageHeader } from "@/components/page-header";
+import { DownloadPdfButton } from "@/components/download-pdf-button";
 import { IdeaPicker } from "@/components/idea-picker";
 import { Button } from "@/components/ui/button";
 import { Loader2, Megaphone, Sparkles } from "lucide-react";
@@ -38,11 +39,12 @@ function MarketingPage() {
   const p = latest?.payload as any;
 
   return (
-    <div>
+    <div id="pdf-root">
       <PageHeader
         eyebrow="Marketing"
         title="Growth plan"
         description="A full social, SEO, content, and email playbook tailored to your startup."
+        actions={<DownloadPdfButton targetId="pdf-root" filename="founderai-marketing.pdf" />}
       />
 
       <div className="glass-strong p-5 flex flex-col sm:flex-row gap-3 items-end mb-6">

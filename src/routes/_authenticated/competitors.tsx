@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { generateCompetitorAnalysis, listReports } from "@/lib/founder.functions";
 import { PageHeader } from "@/components/page-header";
+import { DownloadPdfButton } from "@/components/download-pdf-button";
 import { IdeaPicker } from "@/components/idea-picker";
 import { Button } from "@/components/ui/button";
 import { Loader2, Target, Sparkles, Check, X } from "lucide-react";
@@ -38,11 +39,12 @@ function CompetitorsPage() {
   const payload = latest?.payload as any;
 
   return (
-    <div>
+    <div id="pdf-root">
       <PageHeader
         eyebrow="Competitor Analysis"
         title="Know your market"
         description="Identify rivals, surface strengths and weaknesses, and find your opportunity."
+        actions={<DownloadPdfButton targetId="pdf-root" filename="founderai-competitors.pdf" />}
       />
 
       <div className="glass-strong p-5 flex flex-col sm:flex-row gap-3 items-end mb-6">

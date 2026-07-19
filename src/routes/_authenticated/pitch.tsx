@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { generatePitchDeck, listReports } from "@/lib/founder.functions";
 import { PageHeader } from "@/components/page-header";
+import { DownloadPdfButton } from "@/components/download-pdf-button";
 import { IdeaPicker } from "@/components/idea-picker";
 import { Button } from "@/components/ui/button";
 import { Loader2, Presentation, Sparkles, ChevronLeft, ChevronRight, Download } from "lucide-react";
@@ -94,11 +95,12 @@ function PitchPage() {
   }
 
   return (
-    <div>
+    <div id="pdf-root">
       <PageHeader
         eyebrow="Pitch Deck"
         title="Investor-ready in minutes"
         description="A 10-slide pitch deck — review in-app or export to PowerPoint."
+        actions={<DownloadPdfButton targetId="pdf-root" filename="founderai-pitch.pdf" />}
       />
 
       <div className="glass-strong p-5 flex flex-col sm:flex-row gap-3 items-end mb-6">
