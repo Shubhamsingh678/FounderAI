@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2, Send, Sparkles, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { DownloadPdfButton } from "@/components/download-pdf-button";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
